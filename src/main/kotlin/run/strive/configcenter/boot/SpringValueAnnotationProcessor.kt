@@ -11,7 +11,6 @@ import org.springframework.core.env.ConfigurableEnvironment
 import org.springframework.core.env.Environment
 import org.springframework.core.env.PropertySourcesPropertyResolver
 import org.springframework.util.ReflectionUtils
-import run.strive.configcenter.property.PlaceholderHelper
 import run.strive.configcenter.property.SpringValueProperty
 import run.strive.configcenter.property.SpringValuePropertyStore
 import java.lang.reflect.Field
@@ -20,7 +19,6 @@ import java.util.*
 class SpringValueAnnotationProcessor : BeanPostProcessor, BeanFactoryAware, EnvironmentAware {
     private lateinit var environment: ConfigurableEnvironment
     private lateinit var beanFactory: ConfigurableBeanFactory
-    private val helper = PlaceholderHelper()
     private var typeConverter: SimpleTypeConverter? = null
 
     override fun postProcessBeforeInitialization(bean: Any, beanName: String): Any {
@@ -34,7 +32,6 @@ class SpringValueAnnotationProcessor : BeanPostProcessor, BeanFactoryAware, Envi
             // 缓存@Value标记的Field
             if (Optional.ofNullable(value).isPresent) {
                 // 获取配置项Key
-//                val key = helper.extractPlaceholderKeys(value.value).stream().findFirst().orElse(Strings.EMPTY)
                 val key = resolver.resolvePlaceholders(value.value);
                 SpringValuePropertyStore.add(
                     SpringValueProperty(

@@ -8,11 +8,8 @@ import run.strive.configcenter.provider.RemoteConfigProvider
 import java.util.*
 
 class RemoteConfigProviderFactory(environment: ConfigurableEnvironment) {
-    private val configurableEnvironmentDecorator: ConfigurableEnvironmentDecorator
-
-    init {
-        configurableEnvironmentDecorator = ConfigurableEnvironmentDecorator(environment)
-    }
+    private val configurableEnvironmentDecorator: ConfigurableEnvironmentDecorator =
+        ConfigurableEnvironmentDecorator(environment)
 
     val properties: Properties
         get() {
@@ -33,7 +30,7 @@ class RemoteConfigProviderFactory(environment: ConfigurableEnvironment) {
             return provider.load()
         } catch (e: Throwable) {
             System.err.printf("加载自定义配置类发生错误[%s]%n", configurableEnvironmentDecorator.remoteConfigProvider)
-            throw ConfigCenterServiceException(e);
+            throw ConfigCenterServiceException(e)
         }
     }
 }

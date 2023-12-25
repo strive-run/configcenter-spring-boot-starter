@@ -16,7 +16,7 @@ data class SpringValueProperty(
     /**
      * 当前配置值
      */
-    var value: String,
+    var value: String?,
 
     /**
      * 标记@Value的beanname

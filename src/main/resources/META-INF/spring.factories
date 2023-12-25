@@ -1,4 +1,2 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
- run.strive.configcenter.boot.RemoteConfigAutoConfiguration,run.strive.configcenter.refresh.RefreshScheduleExcutor
 org.springframework.boot.env.EnvironmentPostProcessor=\
  run.strive.configcenter.boot.RemoteConfigurationContextInitializer
